@@ -1,0 +1,367 @@
+@import url(./reset.css);
+
+:root {
+    --primary-color: #3a79a8; /* Matches the blue from the logo */
+    --secondary-color: #f2f5fa; /* A light grey/white for contrast */
+    --accent-color: #d8a223; /* For highlights, inspired by gold/bronze */
+    --text-color: #333333; /* A dark, readable text color */
+    --heading-color: #2a5670; /* A slightly darker shade of blue for headings */
+    --background-color: #f4f4f4; /* Soft background color */
+    --button-bg-color: #3a79a8; /* Same as the primary blue for buttons */
+    --button-text-color: #ffffff; /* White text for buttons */
+    --border-color: #e0e0e0; /* Light border color */
+    --VeryPaleBlue: hsl(207, 100%, 98%);
+    --VeryDarkCyan: hsl(192, 100%, 9%);
+}
+
+html,body{
+    font-family: 'Open Sans';
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: var(--background-color);
+}
+p{
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+    font-weight: 500;
+    color: var(--text-color);
+}
+header{
+    display: flex;
+    align-items: center;
+    padding:  3vw 5vw;
+    justify-content: space-between;
+    width: 100%;
+    .logo-detail{
+        display: flex;
+        align-items: center;
+        gap: 1vw;
+        img{
+            width: 10vw;
+        }
+        p{
+            font-family: 'Pacifico';
+        }
+    }
+}
+.top-left{
+    display: flex;
+    align-items: center;
+    gap: 2vw;
+    svg{
+        width: 10vw;
+    }
+}
+main{
+    width: 100%;
+    > section{
+        padding: 0 0 2vw 15vw;
+        >section {
+            margin: 0 0 0 -5vw;
+            display: flex;
+            align-items: start;
+            gap: 3vw;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            img{
+                width: fit-content;
+                height: 20vw;
+                border-radius: 1vw;
+                margin: 0 0 2vw;
+            }
+            >div{
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                flex: 0 0 25vw;
+                width: 25vw;
+                padding: 0 0 2vw;
+            }
+        }
+        /* WebKit (Chrome, Safari, Edge) - Default hidden scrollbar */
+        >section::-webkit-scrollbar {
+            width: 0; /* Hide the scrollbar */
+        }
+
+        /* WebKit - Show scrollbar when hovering or actively scrolling */
+        >section:hover::-webkit-scrollbar,
+        >section:active::-webkit-scrollbar {
+            width: 10px; /* Restore scrollbar width when hovered */
+        }
+
+        >section:hover::-webkit-scrollbar-track,
+        >section:active::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 2px rgb(214, 210, 210); 
+            border-radius: 10px;
+        }
+
+        >section:hover::-webkit-scrollbar-thumb,
+        >section:active::-webkit-scrollbar-thumb {
+            background: lightgray; 
+            border-radius: 10px;
+        }
+
+        >section:hover::-webkit-scrollbar-thumb:hover,
+        >section:active::-webkit-scrollbar-thumb:hover {
+            background: gray; 
+        }
+    }
+    > section:nth-child(odd){
+        background-image: url(./images/bg-section-top-desktop-1.svg), url(./images/bg-section-bottom-desktop-1.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center top, center bottom;
+        position: relative;
+        z-index: 0;
+        padding: 6vw 0 8vw 15vw;
+    }
+    > section::before{
+        content: '';
+        position: absolute;
+        background-color: var(--VeryPaleBlue);
+        top: 10vw;
+        left: -5vw;
+        width: calc(100% + 5vw);
+        height: calc(100% - 19vw);
+        z-index: -1;
+    }
+}
+.descriptions{
+    height: 0;
+    transition: 0.4s;
+    overflow: hidden;
+    background-color: rgb(231, 240, 147);
+    border-radius: 1vw;
+    font-family: 'Josefin Sans';
+}
+.descriptions-clicked{
+    border: 2px solid var(--border-color);
+    opacity: 1;
+    height: fit-content;
+    margin: 0 0 1vw;
+    padding: 1vw 2vw;
+}
+.name-div{
+    display: flex;
+    align-items: center;
+    gap: 0.5vw;
+    margin: 0 0 1vw;
+}
+.plus, .minus{
+    width: 1.2vw;
+    height: 1.2vw;
+    padding: 0.25vw;
+}
+.plusDiv, .minusDiv{
+    width: fit-content;
+    height: fit-content;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.price{
+    span{
+        font-family: 'Pacifico';
+    }
+    strong{
+        font-size: clamp(0.7rem, 1.1vw, 0.9rem);
+        font-weight: 900;
+    }
+}
+.plusDiv{
+    background: green;
+}
+.minusDiv{
+    background-color: rgb(220, 73, 73);
+    display: none;
+}
+.plusDiv:hover, .minusDiv:hover{
+    filter: brightness(120%);
+}
+h1, h2, h3{
+    font-family: 'Poppins';
+}
+
+h1{
+    font-size: clamp(2rem, 5vw, 4rem);
+    color: var(--heading-color);
+}
+h2{
+    margin: 0 0 4vw;
+}
+h3{
+    font-size: clamp(1rem, 1.8vw, 1.6rem);
+    display: flex;
+    align-items: center;
+    gap: 0.5vw;
+}
+footer{
+    background-image: url(./images/bg-footer-top-desktop.svg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center top;
+    position: relative;
+    width: 100%;
+    padding: 8vw 10vw 0;
+    display: flex;
+    flex-direction: column;
+    .top-left{
+        margin: 0 0 2vw;
+    }
+    p{
+        color: var(--button-bg-color);
+    }
+    >p{
+        margin: 0 0 1vw;
+    }
+    h1{
+        color: var(--primary-color);
+    }
+    h3{
+        font-size: clamp(1.5rem, 2.5vw, 2rem);
+        color: white;
+        margin: 0 0 1vw;
+    }
+}
+.bottom-lower{
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 1vw;
+    padding-left: clamp(1rem, 3vw, 2rem);
+}
+.bottom-lower p{
+    position: relative;
+    img{
+        position: absolute;
+        display: inline-block;
+        left: clamp(-2rem, -3vw, -1rem);
+        top: 0.5vw;
+        vertical-align: middle;
+    }
+}
+.bottom-left{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+}
+.bottom-right{
+    h4{
+        font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+        color: var(--accent-color);
+        display: flex;
+        flex-direction: column;
+    }
+    a{
+        font-size: clamp(1rem, 1.6vw, 1.4rem);
+        color: var(--button-text-color);
+        text-decoration: none;
+        text-decoration: underline;
+    }
+}
+footer::before{
+    content: '';
+    position: absolute;
+    background-color: var(--VeryDarkCyan);
+    top: 10vw;
+    left: -5vw;
+    width: calc(100% + 5vw);
+    height: calc(100%);
+    z-index: -1;
+}
+
+@media screen and (max-width: 600px) {
+    .top-left{
+        svg{
+            width: 18vw;
+        }
+    }
+    p{
+        font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+    }
+    header{
+        display: flex;
+        align-items: center;
+        padding:  1vw 4vw;
+        .logo-detail{
+            gap: 1vw;
+            img{
+                width: 20vw;
+            }
+        }
+    }
+    main{
+        width: 100%;
+        > section{
+            padding: 8vw 0 6vw 15vw;
+            >section {
+                gap: 6vw;
+                img{
+                    height: 40vw;
+                    border-radius: 1vw;
+                    margin: 0 0 4vw;
+                }
+                >div{
+                    flex: 0 0 50vw;
+                    width: 50vw;
+                    padding: 0 0 4vw;
+                }
+            }
+        }
+        > section:nth-child(odd){
+            padding: 12vw 0 16vw 15vw;
+        }
+    }
+    .name-div{
+        gap: 1vw;
+        margin: 0 0 2vw;
+    }
+    .plus, .minus{
+        width: 3vw;
+        height: 3vw;
+        padding: 0.75vw;
+    }
+    footer{
+        >p{
+            margin: 0 0 2vw;
+        }
+        .name-div{
+            margin: 0;
+        }
+        h3{
+            margin: 0 0 3vw;
+        }
+    }
+    .bottom-lower{
+        flex-direction: column;
+        align-items: start;
+        justify-content: space-between;
+        gap: 10vw;
+        padding-left: 0;
+    }
+    .bottom-lower p{
+        margin-left: clamp(1rem, 6vw, 2rem);
+        img{
+            left: clamp(-2rem, -6vw, -1rem);
+        }
+    }
+    .bottom-left{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 1vw;
+    }
+    .bottom-right{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        h4{
+            font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+            flex-direction: row;
+            align-items: center;
+            gap: 1vw;
+        }
+    }
+}
