@@ -299,13 +299,13 @@ footer::before{
             >section {
                 gap: 6vw;
                 img{
-                    height: 40vw;
+                    height: 60vw;
                     border-radius: 1vw;
                     margin: 0 0 4vw;
                 }
                 >div{
-                    flex: 0 0 50vw;
-                    width: 50vw;
+                    flex: 0 0 70vw;
+                    width: 70vw;
                     padding: 0 0 4vw;
                 }
             }
