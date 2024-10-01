@@ -3,6 +3,30 @@ const spaceId = 'd000iobkmws6';
 const accessToken = 'bMDA95aDt9rAJaZI0vYD0BuEmaTzNabaCA76XjbKMEI';
 const contentType = 'cstCafe';
 
+var menuDictionary = null;
+async function fetchMenuData() {
+  try {
+    const response = await fetch('https://script.google.com/macros/s/AKfycbx0tfG4BSkgYZ0e6CeBgnY15-KnGgfKyeT3XdQ-B_Q/dev'); // Replace with your web app URL
+    const data = await response.json();
+
+    // Convert array of objects to a dictionary
+    menuDictionary = data.reduce((acc, item) => {
+      acc[item.menuName] = item.availability; // Key is menu name, value is availability
+      return acc;
+    }, {});
+
+    console.log(menuDictionary); // Log the dictionary to check the structure
+
+    // Example of accessing a menu item's availability
+    console.log(menuDictionary['Pizza']); // Outputs availability for 'Pizza', or undefined if not found
+
+  } catch (error) {
+    console.error('Error fetching menu data:', error);
+  }
+}
+
+fetchMenuData();
+
 // Function to fetch data from Contentful
 async function fetchMenuItems() {
   const url = `https://cdn.contentful.com/spaces/${spaceId}/environments/master/entries?access_token=${accessToken}&content_type=${contentType}&include=1`;
@@ -21,7 +45,7 @@ async function fetchMenuItems() {
 function renderMenu(menuItems, assets) {
     for(i = 0; i < 8; i++){
   menuItems.forEach((item) => {
-    const { menuName, price, availability, category, menuDescription } = item.fields;
+    const { menuName, price, category, menuDescription } = item.fields;
     const imageId = item.fields.image.sys.id;
 
     // Find the corresponding image URL
